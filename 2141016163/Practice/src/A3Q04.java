@@ -14,29 +14,23 @@ public class A3Q04 {
 //		return swaps;
 //	}
 	public static int selecSort(int arr[], int value) {
-		int pivotIndx = -1, pivot = Integer.MAX_VALUE;
-		for(int i =0; i<arr.length; i++) {
-			if(arr[i]>=value && arr[i]<pivot) {
-				pivot = arr[i];
-				pivotIndx = i;
+		int i = 0, j = arr.length-1, swaps = 0; 
+		while(i<j) {
+			while(i<j && arr[i]<value)
+				i++;
+			while(i<j && arr[j]>=value)
+				j--;
+			if(i<j) {
+				assignment3.A3Q01.swap(arr, i++, j--);
+				swaps++;
 			}
 		}
-		assignment3.A3Q01.swap(arr, pivotIndx, arr.length-1);
-		int swap = 0;
-		for(int i =0, j = 0; i<arr.length-1; i++) {
-			if(arr[i]<pivot && i!=j) {
-				assignment3.A3Q01.swap(arr, i, j++);
-				swap++;
-			}
-			else if(arr[i]<pivot && i==j)
-				j++;
-		}
-		return swap;
+		return swaps;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		int arr[] = {1,4,2,6,4,77,54,4,3};
-		int arr[] = {10,7,6,8,5,9};
+		int arr[] = {9,10,6,8,10};
+//		int arr[] = {10,6,7,5,8,9};
 		int swap = selecSort(arr, 8);
 		System.out.println(swap);
 		for(int e : arr)
