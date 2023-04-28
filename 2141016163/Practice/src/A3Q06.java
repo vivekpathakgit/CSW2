@@ -15,6 +15,7 @@ public class A3Q06 {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		int arr[] = {3,4,2,7,5,4};
 		int arr[] = {3,4,2,7,5,4};
 		oddEven(arr);
 		for(int e : arr)

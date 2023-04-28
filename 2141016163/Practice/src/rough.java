@@ -1,42 +1,41 @@
+package assignment3;
 
 public class rough {
+	public static boolean func(int arr[], int size) {
+		int start = -1;
+		int stop = -1;
+		for (int i = 0; i < (size - 1); i++) {
+			if (arr[i] > arr[i + 1]) {
+				start = i;
+				break;
+			}
+		}
+		if (start == -1)
+			return true;
+		for (int i = start; i < (size - 1); i++) {
+			if (arr[i] < arr[i + 1]) {
+				stop = i;
+				break;
+			}
+		}
+		if (stop == -1)
+			return true;
+		// increasing property
+		// after reversal the sub array should fit in the array.
+		if (arr[start - 1] > arr[stop] || arr[stop + 1] < arr[start])
+			return false;
+		for (int i = stop + 1; i < size - 1; i++) {
+			if (arr[i] > arr[i + 1]) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-	public static int maxPathSum(int[] arr1, int size1, int[] arr2, int size2) {
-		int i = 0, j = 0, result = 0, sum1 = 0, sum2 = 0;
-		while (i < size1 && j < size2) {
-		if (arr1[i] < arr2[j]) {
-		sum1 += arr1[i];
-		i += 1;
-		} else if (arr1[i] > arr2[j]) {
-		sum2 += arr2[j];
-		j += 1;
-		} else {
-		result += Math.max(sum1, sum2);
-		result = result + arr1[i];
-		sum1 = 0;
-		sum2 = 0;
-		i += 1;
-		j += 1;
-		}
-		System.out.println(result);
-		}
-		while (i < size1) {
-			sum1 += arr1[i];
-			i += 1;
-			}
-			while (j < size2) {
-			sum2 += arr2[j];
-			j += 1;
-			}
-			result += Math.max(sum1, sum2);
-			return result;
-			}
-			/* Testing code */
-			public static void main(String[] args) {
-			int[] arr1 = { 12, 13, 18, 20, 22, 26, 70 };
-			int[] arr2 = { 11, 15, 18, 19, 20, 26, 30, 31 };
-			System.out.println("Max Path Sum :: " + maxPathSum(arr1, arr1.length,
-			arr2, arr2.length));
-			}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int arr[] = { 2, 3, 4,6, 8,7,6,5,9 };
+		System.out.println(func(arr, arr.length));
+	}
 
 }
